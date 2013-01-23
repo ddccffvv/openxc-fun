@@ -1,0 +1,64 @@
+# OpenXC Android Library Changelog
+
+## v3.0
+
+* Add support for network-based CAN translator (thanks Ewgenij Sokolovski and
+  Robert Rembold)
+* Push core physical vehicle interfaces back into the realm of the remote
+  VehicleService process for performance and to accomodate a new API for writing
+  back to the vehicle.
+* Refactor message writing API - VehicleManager.set(RawMeasurement) is now
+  send(RawMeasurement).
+
+## v3.0
+
+* Fix build error in Eclipse, hopefully once and for all.
+
+## v2.1.2
+
+* Duplicate messages are no longer received from USB data source.
+* Infrequent messages are no longer lost by the USB data source.
+
+## v2.1.1
+
+* Fix build error in Eclipse.
+
+## v2.1
+
+* Raise minimum Android API version to 9 (2.3) to use newer data structures.
+* Fix compatibility issue with Android 4.2.
+* Bump platform build version to Android SDK version 17 (4.2).
+* Significant performance improvements when parsing JSON and communicating
+  between remote and in-app vehicle services.
+* Continue to flush records in the UploaderSink even if the vehicle is
+  disconnected.
+
+## v2.0
+
+* Test and verify Bluetooth data source.
+* Add an option to the Enabler's settings menu to use a Bluetooth source.
+* Change vehicle data trace file format to include timestamps as native JSON.
+* Remove Maven support for Eclipse developers; library dependencies are now
+  bundled in the repository.
+
+## v1.3
+
+* Greatly improve USB connection reliability.
+* Refactored library internals to allow greater flexibility, including
+  user-defined Measurement types, data sources and data sinks.
+
+## v1.2
+
+* Add OpenXC Enabler application to control VehicleService in a remote process.
+  Starts service at bootup and allows sharing the service between multiple
+  OpenXC applications.
+
+## v1.1
+
+* Measurement API changed, getValue() no longers throws an exception if data is
+  unavailable. Instead, measurement objects will not be returned to the caller
+  unless they have valid data.
+
+## v1.0
+
+* Initial release, USB CAN translator support.

@@ -1,0 +1,68 @@
+OpenXC Android Library
+=========================
+
+This library is a part of the [OpenXC][] project.
+
+This Android library contains the tools required to read vehicle data from the
+vehicle's CAN bus through the OpenXC CAN translation module in any Android
+application.
+
+Visit the [OpenXC][] project page for
+[installation
+instructions](http://openxcplatform.com/getting-started/library-installation.html),
+[usage details](http://openxcplatform.com/android/api-guide.html) and the
+[source code documentation](http://openxcplatform.com/openxc-android).
+
+## Building from Eclipse
+
+Before importing the projects, make sure Eclipse is set to use the Java 1.6
+compliler compliance level at `Windows -> Preferences -> Java -> Compiler`.
+
+Next, go to `File -> Import -> General -> Existing Projects into
+Workspace` and browse to the `openxc-android` repository. At the minimum, import
+the `openxc` folder (the Android library itself) and `openxc-enabler` (the
+Enabler app, required to run OpenXC applications).
+
+You can optionally import the `openxc-examples` project to see an example
+vehicle dashboard OpenXC application, and also the `openxc-it` which contains a
+test suite for the library and instrumentation tests that run on the device.
+
+## Building from Command Line
+
+The build requires [Maven](http://maven.apache.org/download.html)
+v3.0.3+ and the [Android SDK](http://developer.android.com/sdk/index.html)
+to be installed in your development environment. In addition you'll need to set
+the `ANDROID_HOME` environment variable to the location of your SDK:
+
+    export ANDROID_HOME=/opt/tools/android-sdk
+
+After satisfying those requirements, the build is pretty simple:
+
+* Run `mvn clean install -pl openxc -am` from the root directory to build the OpenXC
+  library APK only.
+* Run `mvn clean install -pl openxc,openxc-it -am` from the root directory to build and run
+  the library and test suite. This requires that an Android device is attached or an
+  emulator is running.
+
+If you want the tests to wait for a debugger to attach, change the `testDebug`
+setting in `openxc-android/pom.xml` to `true`.
+
+After the library is installed (run `mvn clean install -pl openxc`), run this
+to deploy the enabler and examples to an attached device:
+
+    $ mvn clean package android:deploy -pl enabler,examples
+    $ mvn android:run -pl examples
+
+## Contributing
+
+Please see our [Contribution Documents](https://github.com/openxc/openxc-android/blob/master/CONTRIBUTING.mkd).
+
+## License
+
+Copyright (c) 2011-2013 Ford Motor Company
+Licensed under the BSD license.
+
+[binding]: http://developer.android.com/guide/topics/fundamentals/bound-services.html#Binding)
+[services]: http://developer.android.com/guide/topics/fundamentals/services.html
+[AIDL]: http://developer.android.com/guide/developing/tools/aidl.html
+[OpenXC]: http://openxcplatform.com
